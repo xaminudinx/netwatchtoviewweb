@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Netwatch MikroTik</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .table-container {
+            width: 80%;
+            margin: auto;
+        }
+        table {
+            border: 1px solid #dee2e6;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dee2e6 !important; /* Tambahkan batas dalam tabel */
+        }
+        .table-success {
+            background-color: #d4edda !important;
+        }
+        .table-danger {
+            background-color: #f8d7da !important;
+        }
+        .table-warning {
+            background-color: #fff3cd !important;
+        }
+        @media (max-width: 768px) {
+            .table-container {
+                width: 100%;
+            }
+            table {
+                font-size: 0.875rem; /* Menyesuaikan ukuran font untuk tampilan lebih kecil */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="table-container">
+        <div id="netwatch-table">
+            <!-- Tabel akan dimuat di sini -->
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function updateTable() {
+            fetch('status_netwatch.php')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('netwatch-table').innerHTML = html;
+                })
+                .catch(error => console.error('Error fetching table data:', error));
+        }
+
+        // Memperbarui tabel setiap 3 detik
+        setInterval(updateTable, 5000);
+
+        // Panggil sekali saat halaman dimuat
+        updateTable();
+    </script>
+</body>
+</html>

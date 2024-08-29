@@ -5,7 +5,7 @@ require('routeros_api.class.php');
 $API = new RouterosAPI();
 $status = '';
 
-if ($API->connect('ADDRESS', 'USERNAME', 'PASSWORD')) {
+if ($API->connect('MIKROTIKADDRESS', 'MIKROTIKUSERNAME', 'MIKROTIKPASSWORD')) {
     $data = $API->comm('/tool/netwatch/print');
     $API->disconnect();
 
